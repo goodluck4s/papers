@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete" lang="zh-Hans"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="webkit" name="renderer">
+        <meta content="15317273575564615446375" property="qc:admins">
+        <meta property="og:image" content="https://assets.segmentfault.com/v-5eaa9db5/global/img/static/touch-icon.png">
+        <meta content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ" name="alexaVerifyID">
+        <meta content="app-id=958101793, app-argument=" name="apple-itunes-app">
+                <title>高性能JSON框架之FastJson的简单使用 - Java - SegmentFault 思否</title>
+    
+            <meta name="description" content="JSON协议使用方便，越来越流行,JSON的处理器有很多,这里我介绍一下FastJson,FastJson是阿里的开源框架,被不少企业使用,是一个极其优秀的Json框架,Github地址: FastJson">
+    
+            <meta name="keywords" content="java">
+    
+        <style type="text/css">svg:not(:root).svg-inline--fa {
+  overflow: visible;
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.225em;
+}
+.svg-inline--fa.fa-w-1 {
+  width: 0.0625em;
+}
+.svg-inline--fa.fa-w-2 {
+  width: 0.125em;
+}
+.svg-inline--fa.fa-w-3 {
+  width: 0.1875em;
+}
+.svg-inline--fa.fa-w-4 {
+  width: 0.25em;
+}
+.svg-inline--fa.fa-w-5 {
+  width: 0.3125em;
+}
+.svg-inline--fa.fa-w-6 {
+  width: 0.375em;
+}
+.svg-inline--fa.fa-w-7 {
+  width: 0.4375em;
+}
+.svg-inline--fa.fa-w-8 {
+  width: 0.5em;
+}
+.svg-inline--fa.fa-w-9 {
+  width: 0.5625em;
+}
+.svg-inline--fa.fa-w-10 {
+  width: 0.625em;
+}
+.svg-inline--fa.fa-w-11 {
+  width: 0.6875em;
+}
+.svg-inline--fa.fa-w-12 {
+  width: 0.75em;
+}
+.svg-inline--fa.fa-w-13 {
+  width: 0.8125em;
+}
+.svg-inline--fa.fa-w-14 {
+  width: 0.875em;
+}
+.svg-inline--fa.fa-w-15 {
+  width: 0.9375em;
+}
+.svg-inline--fa.fa-w-16 {
+  width: 1em;
+}
+.svg-inline--fa.fa-w-17 {
+  width: 1.0625em;
+}
+.svg-inline--fa.fa-w-18 {
+  width: 1.125em;
+}
+.svg-inline--fa.fa-w-19 {
+  width: 1.1875em;
+}
+.svg-inline--fa.fa-w-20 {
+  width: 1.25em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-border {
+  height: 1.5em;
+}
+.svg-inline--fa.fa-li {
+  width: 2em;
+}
+.svg-inline--fa.fa-fw {
+  width: 1.25em;
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: #ff253a;
+  border-radius: 1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  height: 1.5em;
+  line-height: 1;
+  max-width: 5em;
+  min-width: 1.5em;
+  overflow: hidden;
+  padding: 0.25em;
+  right: 0;
+  text-overflow: ellipsis;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: 0;
+  left: 0;
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  right: 0;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: 0;
+  right: auto;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-lg {
+  font-size: 1.3333333333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: 2.5em;
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: -2em;
+  position: absolute;
+  text-align: center;
+  width: 2em;
+  line-height: inherit;
+}
+
+.fa-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.fa-pull-left {
+  float: left;
+}
+
+.fa-pull-right {
+  float: right;
+}
+
+.fa.fa-pull-left,
+.fas.fa-pull-left,
+.far.fa-pull-left,
+.fal.fa-pull-left,
+.fab.fa-pull-left {
+  margin-right: 0.3em;
+}
+.fa.fa-pull-right,
+.fas.fa-pull-right,
+.far.fa-pull-right,
+.fal.fa-pull-right,
+.fab.fa-pull-right {
+  margin-left: 0.3em;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+          animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+          animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both, .fa-flip-horizontal.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical,
+:root .fa-flip-both {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: #fff;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse {
+  color: #fff;
+}</style><link href="https://segmentfault.com/opensearch.xml" rel="search" title="SegmentFault" type="application/opensearchdescription+xml">
+        <link rel="shortcut icon" href="https://assets.segmentfault.com/v-5eaa9db5/global/img/favicon.ico">
+        <link rel="apple-touch-icon" href="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/touch-icon.png">
+
+        <meta content="#00965e" name="msapplication-TileColor">
+        <meta name="msapplication-square150x150logo" content="https://assets.segmentfault.com/v-5eaa9db5/global/img/static/touch-icon.png">
+        <meta content="bcf7fd80dca60d53d46d5b46e1b990ca" name="baidu_union_verify">
+
+    
+        <link href="https://segmentfault.com/feeds/questions" rel="alternate" title="SegmentFault 最新问题" type="application/atom+xml">
+        <link href="https://segmentfault.com/feeds/blogs" rel="alternate" title="SegmentFault 最新文章" type="application/atom+xml">
+    
+    
+    
+    
+    
+            <link rel="stylesheet" href="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/global.css">
+        <link rel="stylesheet" href="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/vendors.css">
+        
+            <link rel="stylesheet" href="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/detail.css">
+    
+    
+        <script type="text/javascript" async="" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/analytics.js"></script><script async="" defer="defer" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/adsbygoogle.js"></script><script async="" defer="defer" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/fl.js"></script><script async="" defer="defer" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/spc.js"></script><script async="" defer="defer" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/spcjs.js"></script><script>
+var _oa = [], OA_google = true;
+
+function OA_script(src, cb) {
+    var s = document.createElement('script'), m = document.getElementsByTagName('script')[0];
+    
+    if (cb) {
+        s.onload = cb;
+    }
+    
+    s.async = 1;
+    s.defer = 1;
+    s.src = src;
+    m.parentNode.insertBefore(s, m);
+}
+
+function OA_show(name) {
+    _oa.push(name);
+    document.write('<div id="OA_holder_' + name + '"></div>');
+}
+
+OA_script('https://sponsor.segmentfault.com/spcjs.php?id=1&block=1&repu=0&tag=java&v=5e8d8dec');
+</script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async="" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/js"></script>
+
+            <!-- 推荐引擎 -->
+        <script charset="utf-8" id="ParadigmSDK" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/ParadigmSDK_v2.js" data="216" defsi="594">
+        </script>
+        <script>
+            ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
+            ParadigmSDK.trackDetailPageShow();
+        </script>
+                <link rel="preload" href="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/integrator.js" as="script"><script type="text/javascript" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/integrator.js"></script></head>
+    <body><div class="custome-alert alert alert-warning topframe text-center my-0 sticky-top d-none rounded-0">
+                <span class="alert-content"></span>
+                <button type="button" class="close">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+
+    <img style="height: 0; width: 0; display: none" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/touch-icon.png">
+
+<div id="gridMapHoverBox" style="position:absolute; border: 1px solid #00965e; z-index: 99; font-size: 10px; background:#fff"></div>
+
+
+<nav id="sf-header" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand text-hide sf-header-logo" href="https://segmentfault.com/">SegmentFault</a>
+
+                    <a class="btn btn-primary d-lg-none ml-auto mr-2" href="https://segmentfault.com/user/login">注册登录</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav font-weight-bold">
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/" class="nav-link ">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/questions" class="nav-link ">问答</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/blogs" class="nav-link active">专栏</a>
+                </li>
+                 <li class="nav-item">
+                    <a href="https://segmentfault.com/news" class="nav-link ">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/lives" class="nav-link ">课程</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/events" class="nav-link ">活动</a>
+                </li>
+                <li class="nav-item dropdown hover-down">
+                    <a href="###" id="navbarDiscover" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link  dropdown-toggle ">发现</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDiscover">
+                        <a class="dropdown-item" href="https://segmentfault.com/groups">圈子</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/tags">标签</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/groups?tab=jobs">酷工作</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/users">排行榜</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/badges">徽章</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/notes">笔记</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://docs.segmentfault.com/" target="_blank">开发手册</a>
+                        <a class="dropdown-item" href="https://business.segmentfault.com/ads?utm_source=sf-header" target="_blank">广告投放<svg class="svg-inline--fa fa-external-link-square fa-w-14 ml-2 text-warning" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="external-link-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-64 47.111C384 109.929 370.071 96 352.889 96H220.667c-12.887 0-23.333 10.447-23.333 23.334v14.904c0 13.138 10.843 23.686 23.976 23.324l56.002-1.588L69.908 361.908c-7.858 7.802-7.88 20.504-.05 28.334l19.899 19.899c7.83 7.83 20.532 7.808 28.334-.05l205.935-207.404-1.588 56.003c-.362 13.133 10.186 23.976 23.324 23.976h14.904c12.887 0 23.334-10.447 23.334-23.333V127.111z"></path></svg><!-- <i class="ml-2 text-warning fas fa-external-link-square"></i> -->
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0 flex-fill d-none d-xl-block px-4" action="/search">
+                <input class="form-control w-100" id="searchBox" name="q" type="search" placeholder="搜索关键字" aria-label="搜索">
+            </form>
+
+            <ul class="navbar-nav navbar-user ml-auto align-items-lg-center">
+                                    <li class="nav-item d-none d-lg-flex">
+                        <a href="https://segmentfault.com/user/login" class="btn btn-link mr-2 require-login">立即登录</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-flex">
+                        <a href="https://segmentfault.com/user/register" class="btn btn-primary require-login">免费注册</a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</nav>
+
+    <input id="articleId" value="1190000011212806" class="hidden">
+    <div class="d-none d-xl-flex justify-content-center">
+        <script type="text/javascript">
+          OA_show(2);
+        </script><div id="OA_holder_2"></div>
+    </div>
+    <div class="position-relative">
+        <div class="container my-sm-4 my-1" id="sf-article">
+            <div class="row">
+                                <div class="col-12 col-xl w-0">
+                    
+                                                            
+                    <div class="card border-0 mb-4">
+                        <div class="card-body p-lg-30">
+                            <div class="d-flex justify-content-between align-items-center mb-3" id="sf-article_author">
+                                <div class="information d-flex align-items-center">
+                                    <a class="d-flex align-items-centers mr-1" href="https://segmentfault.com/u/zhouxu_2017">
+                                        <picture class="mr-2 d-sm-block d-none">
+                                            <img class="d-inline-block rounded-circle " src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/3266807223-59bcc83088432_big64" aria-hidden="true" width="32">
+                                        </picture>
+                                        <strong class="align-self-center">周旭</strong>
+                                    </a>
+                                    <ul class="list-inline mb-0 authentication-info sflex-center font-size-14">
+                                                                                <li class="list-inline-item">
+                                            <svg class="svg-inline--fa fa-dice-d8 fa-w-16" style="color: #BF7158;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dice-d8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M225.53 2.52L2.36 233.83c-4.21 4.37-2.56 11.71 3.1 13.77l234.13 85.06V8.39c-.01-7.49-8.91-11.21-14.06-5.87zm284.11 231.31L286.47 2.52C281.32-2.82 272.41.9 272.41 8.4v324.27l234.13-85.06c5.66-2.07 7.31-9.42 3.1-13.78zM33.53 310.38l192 199.1c5.15 5.34 14.06 1.62 14.06-5.88V368.29L42.13 296.61c-8.21-2.98-14.72 7.43-8.6 13.77zm436.34-13.77l-197.46 71.68V503.6c0 7.5 8.91 11.22 14.06 5.88l192-199.1c6.12-6.34-.39-16.75-8.6-13.77z"></path></svg><!-- <i class="fas fa-dice-d8" style="color:#BF7158"></i> -->
+                                            <span style="color: #BF7158;font-weight:bold">74</span>
+                                        </li>
+                                        
+                                                                            </ul>
+                                </div>
+
+                            </div><div></div>
+                            <div class="functional-area-left sticky-top d-none d-xl-flex"><div class="text-center"><div class="btn-group like-group " role="group">
+            <button data-type="question" class="func-btn mainLike like-btn btn btn-outline-primary 
+                            " data-id="1190000011212806">
+                            <svg class="svg-inline--fa fa-thumbs-up fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M466.27 286.69C475.04 271.84 480 256 480 236.85c0-44.015-37.218-85.58-85.82-85.58H357.7c4.92-12.81 8.85-28.13 8.85-46.54C366.55 31.936 328.86 0 271.28 0c-61.607 0-58.093 94.933-71.76 108.6-22.747 22.747-49.615 66.447-68.76 83.4H32c-17.673 0-32 14.327-32 32v240c0 17.673 14.327 32 32 32h64c14.893 0 27.408-10.174 30.978-23.95 44.509 1.001 75.06 39.94 177.802 39.94 7.22 0 15.22.01 22.22.01 77.117 0 111.986-39.423 112.94-95.33 13.319-18.425 20.299-43.122 17.34-66.99 9.854-18.452 13.664-40.343 8.99-62.99zm-61.75 53.83c12.56 21.13 1.26 49.41-13.94 57.57 7.7 48.78-17.608 65.9-53.12 65.9h-37.82c-71.639 0-118.029-37.82-171.64-37.82V240h10.92c28.36 0 67.98-70.89 94.54-97.46 28.36-28.36 18.91-75.63 37.82-94.54 47.27 0 47.27 32.98 47.27 56.73 0 39.17-28.36 56.72-28.36 94.54h103.99c21.11 0 37.73 18.91 37.82 37.82.09 18.9-12.82 37.81-22.27 37.81 13.489 14.555 16.371 45.236-5.21 65.62zM88 432c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"></path></svg><!-- <i class="far fa-thumbs-up"></i> -->
+                            <span class="mainLikeNum">46</span>
+                        </button></div><button class="func-btn mainBookmark btn btn-outline-secondary 
+                                 " data-id="1190000011212806">
+                                <svg class="svg-inline--fa fa-bookmark fa-w-12" aria-hidden="true" focusable="false" data-prefix="far" data-icon="bookmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84-144 84V54a6 6 0 0 1 6-6h276c3.314 0 6 2.683 6 5.996V428.43z"></path></svg><!-- <i class="far fa-bookmark"></i> -->
+                                
+                            </button><a class="func-btn show-column btn btn-outline-secondary
+                              " href="#comment-area">
+                            <svg class="svg-inline--fa fa-comment-alt-lines fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-alt-lines" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 7.1 5.8 12 12 12 2.4 0 4.9-.7 7.1-2.4L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zm16 352c0 8.8-7.2 16-16 16H288l-12.8 9.6L208 428v-60H64c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h384c8.8 0 16 7.2 16 16v288zm-96-216H144c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16v-16c0-8.8-7.2-16-16-16zm-96 96H144c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-16c0-8.8-7.2-16-16-16z"></path></svg><!-- <i class="far fa-comment-alt-lines"></i> -->
+                            
+                        </a><div class="dropdown dropup d-inline-block">
+                        <button class="func-btn btn btn-outline-secondary
+                        " id="func_share" data-toggle="dropdown">
+                        <svg class="svg-inline--fa fa-share-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="far" data-icon="share-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M352 320c-25.6 0-48.9 10-66.1 26.4l-98.3-61.5c5.9-18.8 5.9-39.1 0-57.8l98.3-61.5C303.1 182 326.4 192 352 192c53 0 96-43 96-96S405 0 352 0s-96 43-96 96c0 9.8 1.5 19.6 4.4 28.9l-98.3 61.5C144.9 170 121.6 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.6 0 48.9-10 66.1-26.4l98.3 61.5c-2.9 9.4-4.4 19.1-4.4 28.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96zm0-272c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zM96 304c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm256 160c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"></path></svg><!-- <i class="far fa-share-alt"></i> -->
+                        
+                        </button>
+                        <div class="dropdown-menu shareContent" aria-labelledby="func_share">
+                            <div class="text-center mt-2" style="cursor: auto">
+                                <div class="qr"><img crossorigin="anonymous" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHYAAAB2CAYAAAAdp2cRAAADN0lEQVR4nO3dQW4jMQxE0dzJ9z+bsssisN0qVZFqy59AVk1RJJ+CWQwG8zOII+NnjDEej0frz/9Q89VQ63XPV7FfYCfygQUWWGVwN4ANLfJqsO5QF69+d+93A1hg6y/uDGCB/S7YlT+8lcHUwdV+7g5b0T+wBf259YEF9mV9YAv6c+sfC1sN4c6jBrDAAgvs+/rAArsPNr347vPAAgsssO/rA/vNsG6kF+Hmq+fdh7Vjv8BOnAdWuHhnvnoeWOHinfnq+WNgq3/UwU/73rFfYIEFFlhg7wF7t3AXmc5XH+odAtiJfGBDAawfwE7kfyxs4g/rd5GGqg63n+6H9Ow7sE8CWGAj54Ftiq+FVRtzB3Nj96LTvygz8wG70A+wwAIL7AbYdONpuJXBk+e7H+ZMfWAD54EFNtI/sC/6TZ8/Bvbq4nT+1Xn3IXU/5PRDeHYe2Il+gAUWWGAbYNVB3cFXGq383v2w1Xor9YEFdr0RYLUAFtiXsfQPn7sbTwyqzJPeR7rfmX0ACyyws9/d/KvzwE7en/7u5l+dX4Z1G19pxIlqaDU//VCBBRZY5zywwH4WbDVMetG7+08/9Jl8YIHVCisBLLBT59P5bv+3gVULpR+Cu4jqh1rdX6JfYG/YH7DAAvtJ/cVg3XAXU32/usg0dHW/zwJYYOcHS+e79YBdDGBvCptuJL3Yagj1ezo/3c8YwAIL7Ho9dR9u/TGAPRvWbWTlYuU+N7968dUBLLB/AexEPWCBLYkYrAqZhlehuh9W9X4S8wFbcP/u/Y0BbMn9u/c3BrAl9+/e3xg3+c8euh/C7n7VeivwwG7oV60HLLDA7uxXrbcMmy6cHtxdbPVDce+vmAfYifrV9wNbuAglH1hgt9QbY/Iv2t1wF5uGUfPTD+fqPLBF96W/q/cDW3Rf+rt6P7BF96W/q/e3wV5dnB7crZ+ep7pexf6BBRZYYIEFdua7C+n2cwcodR5ggQUWWHOR6iDAHgqbzq+uV/0QxwB2KYA1GutcjBrAGo11LkaNY2Dd2A2bPu/W6/hFABbY9QBWywcWWA22+qdiEGWRan9qvXT+yj6ABRbY2Xrp/JV9AHsyLHFe/AKO8Zd3mJPTwQAAAABJRU5ErkJggg==" style="width: 118px; height: 118px;" width="118" height="118"></div>
+                                扫一扫分享
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> 新浪微博</a><a class="dropdown-item share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> Twitter</a><a class="dropdown-item share_facebook" data-share="facebook" href="javascript:;" target="_blank"><svg class="svg-inline--fa fa-facebook-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg><!-- <i class="fab fa-facebook-square fa-fw"></i> --> Facebook</a></div>
+                    </div></div></div>
+                            <h1 class="h2 mb-3" id="sf-article_title">
+                                <a class="text-body" href="https://segmentfault.com/a/1190000011212806">高性能JSON框架之FastJson的简单使用</a>
+                            </h1>
+                            <div class="d-sm-flex d-none flex-wrap align-items-center mb-4" id="sf-article_tags">
+                                <div class="m-n1"><a class="m-1 badge-tag" href="https://segmentfault.com/t/java" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/512/342/51234253-1040000000089449_big64" data-placement="top" data-original-title="java" data-id="1040000000089449">
+                                                                                            <img src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/868271510-54cb382abb7a1_small">
+                                                                                        java
+                                        </a></div>
+                                <div class="font-size-14">
+                                                                    <span class="text-secondary ml-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="发布于 2017-09-17 ">更新于 2017-09-17 </span>
+                                                                    <span class="split-dot"></span>
+                                    <span class="text-secondary" title="阅读时长">&nbsp;约 24 分钟</span>
+                                                                                                        </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                OA_show(25);
+                            </script><div id="OA_holder_25"></div>
+
+                            <article class="article fmt article-content" data-id="1190000011212806" data-license="cc">
+                                
+<h2 id="item-1">1.前言</h2>
+<h3 id="item-1-1">1.1.FastJson的介绍:</h3>
+<p>JSON协议使用方便，越来越流行,JSON的处理器有很多,这里我介绍一下FastJson,FastJson是阿里的开源框架,被不少企业使用,是一个极其优秀的Json框架,Github地址: <a href="https://github.com/alibaba/fastjson" rel="nofollow noreferrer" target="_blank">FastJson</a></p>
+<h3 id="item-1-2">1.2.FastJson的特点:</h3>
+<p>1.FastJson数度快,无论序列化和反序列化,都是当之无愧的fast  <br>2.功能强大(支持普通JDK类包括任意Java Bean Class、Collection、Map、Date或enum)  <br>3.零依赖(没有依赖其它任何类库)</p>
+<h3 id="item-1-3">1.3.FastJson的简单说明:</h3>
+<p>FastJson对于json格式字符串的解析主要用到了下面三个类：  <br>1.JSON：fastJson的解析器，用于JSON格式字符串与JSON对象及javaBean之间的转换  <br>2.JSONObject：fastJson提供的json对象    <br>3.JSONArray：fastJson提供json数组对象</p>
+<blockquote><p><strong>还在迷茫和彷徨吗,快上车,老司机带你飞!</strong></p></blockquote>
+<h2 id="item-2">2.FastJson的用法</h2>
+<p>首先定义三个json格式的字符串</p>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="//json字符串-简单对象型
+private static final String  JSON_OBJ_STR = &quot;{\&quot;studentName\&quot;:\&quot;lily\&quot;,\&quot;studentAge\&quot;:12}&quot;;
+
+//json字符串-数组类型
+private static final String  JSON_ARRAY_STR = &quot;[{\&quot;studentName\&quot;:\&quot;lily\&quot;,\&quot;studentAge\&quot;:12},{\&quot;studentName\&quot;:\&quot;lucy\&quot;,\&quot;studentAge\&quot;:15}]&quot;;
+
+//复杂格式json字符串
+private static final String  COMPLEX_JSON_STR = &quot;{\&quot;teacherName\&quot;:\&quot;crystall\&quot;,\&quot;teacherAge\&quot;:27,\&quot;course\&quot;:{\&quot;courseName\&quot;:\&quot;english\&quot;,\&quot;code\&quot;:1270},\&quot;students\&quot;:[{\&quot;studentName\&quot;:\&quot;lily\&quot;,\&quot;studentAge\&quot;:12},{\&quot;studentName\&quot;:\&quot;lucy\&quot;,\&quot;studentAge\&quot;:15}]}&quot;;" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">//json字符串-简单对象型</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String  JSON_OBJ_STR = <span class="hljs-string">"{\"studentName\":\"lily\",\"studentAge\":12}"</span>;
+
+<span class="hljs-comment">//json字符串-数组类型</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String  JSON_ARRAY_STR = <span class="hljs-string">"[{\"studentName\":\"lily\",\"studentAge\":12},{\"studentName\":\"lucy\",\"studentAge\":15}]"</span>;
+
+<span class="hljs-comment">//复杂格式json字符串</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String  COMPLEX_JSON_STR = <span class="hljs-string">"{\"teacherName\":\"crystall\",\"teacherAge\":27,\"course\":{\"courseName\":\"english\",\"code\":1270},\"students\":[{\"studentName\":\"lily\",\"studentAge\":12},{\"studentName\":\"lucy\",\"studentAge\":15}]}"</span>;</code></pre>
+<h3 id="item-2-4">2.1.JSON格式字符串与JSON对象之间的转换</h3>
+<h4>2.1.1.json字符串-简单对象型与JSONObject之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * json字符串-简单对象型到JSONObject的转换
+ */
+@Test
+public void testJSONStrToJSONObject() {
+
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    System.out.println(&quot;studentName:  &quot; + jsonObject.getString(&quot;studentName&quot;) + &quot;:&quot; + &quot;  studentAge:  &quot;
+            + jsonObject.getInteger(&quot;studentAge&quot;));
+
+}
+
+/**
+ * JSONObject到json字符串-简单对象型的转换
+ */
+@Test
+public void testJSONObjectToJSONStr() {
+
+    //已知JSONObject,目标要转换为json字符串
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+    // 第一种方式
+    String jsonString = JSONObject.toJSONString(jsonObject);
+
+    // 第二种方式
+    //String jsonString = jsonObject.toJSONString();
+    System.out.println(jsonString);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * json字符串-简单对象型到JSONObject的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONStrToJSONObject</span><span class="hljs-params">()</span> </span>{
+
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    System.out.println(<span class="hljs-string">"studentName:  "</span> + jsonObject.getString(<span class="hljs-string">"studentName"</span>) + <span class="hljs-string">":"</span> + <span class="hljs-string">"  studentAge:  "</span>
+            + jsonObject.getInteger(<span class="hljs-string">"studentAge"</span>));
+
+}
+
+<span class="hljs-comment">/**
+ * JSONObject到json字符串-简单对象型的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONObjectToJSONStr</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知JSONObject,目标要转换为json字符串</span>
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+    <span class="hljs-comment">// 第一种方式</span>
+    String jsonString = JSONObject.toJSONString(jsonObject);
+
+    <span class="hljs-comment">// 第二种方式</span>
+    <span class="hljs-comment">//String jsonString = jsonObject.toJSONString();</span>
+    System.out.println(jsonString);
+}</code></pre>
+<h4>2.1.2.json字符串(数组类型)与JSONArray之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * json字符串-数组类型到JSONArray的转换
+ */
+@Test
+public void testJSONStrToJSONArray() {
+
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    //遍历方式1
+    int size = jsonArray.size();
+    for (int i = 0; i &lt; size; i++) {
+
+        JSONObject jsonObject = jsonArray.getJSONObject(i);
+        System.out.println(&quot;studentName:  &quot; + jsonObject.getString(&quot;studentName&quot;) + &quot;:&quot; + &quot;  studentAge:  &quot;
+                + jsonObject.getInteger(&quot;studentAge&quot;));
+    }
+
+    //遍历方式2
+    for (Object obj : jsonArray) {
+
+        JSONObject jsonObject = (JSONObject) obj;
+        System.out.println(&quot;studentName:  &quot; + jsonObject.getString(&quot;studentName&quot;) + &quot;:&quot; + &quot;  studentAge:  &quot;
+                + jsonObject.getInteger(&quot;studentAge&quot;));
+    }
+}
+
+/**
+ * JSONArray到json字符串-数组类型的转换
+ */
+@Test
+public void testJSONArrayToJSONStr() {
+
+    //已知JSONArray,目标要转换为json字符串
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+    //第一种方式
+    String jsonString = JSONArray.toJSONString(jsonArray);
+
+    // 第二种方式
+    //String jsonString = jsonArray.toJSONString(jsonArray);
+    System.out.println(jsonString);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * json字符串-数组类型到JSONArray的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONStrToJSONArray</span><span class="hljs-params">()</span> </span>{
+
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    <span class="hljs-comment">//遍历方式1</span>
+    <span class="hljs-keyword">int</span> size = jsonArray.size();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) {
+
+        JSONObject jsonObject = jsonArray.getJSONObject(i);
+        System.out.println(<span class="hljs-string">"studentName:  "</span> + jsonObject.getString(<span class="hljs-string">"studentName"</span>) + <span class="hljs-string">":"</span> + <span class="hljs-string">"  studentAge:  "</span>
+                + jsonObject.getInteger(<span class="hljs-string">"studentAge"</span>));
+    }
+
+    <span class="hljs-comment">//遍历方式2</span>
+    <span class="hljs-keyword">for</span> (Object obj : jsonArray) {
+
+        JSONObject jsonObject = (JSONObject) obj;
+        System.out.println(<span class="hljs-string">"studentName:  "</span> + jsonObject.getString(<span class="hljs-string">"studentName"</span>) + <span class="hljs-string">":"</span> + <span class="hljs-string">"  studentAge:  "</span>
+                + jsonObject.getInteger(<span class="hljs-string">"studentAge"</span>));
+    }
+}
+
+<span class="hljs-comment">/**
+ * JSONArray到json字符串-数组类型的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONArrayToJSONStr</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知JSONArray,目标要转换为json字符串</span>
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+    <span class="hljs-comment">//第一种方式</span>
+    String jsonString = JSONArray.toJSONString(jsonArray);
+
+    <span class="hljs-comment">// 第二种方式</span>
+    <span class="hljs-comment">//String jsonString = jsonArray.toJSONString(jsonArray);</span>
+    System.out.println(jsonString);
+}</code></pre>
+<h4>2.1.3.复杂json格式字符串与JSONObject之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * 复杂json格式字符串到JSONObject的转换
+ */
+@Test
+public void testComplexJSONStrToJSONObject() {
+
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    String teacherName = jsonObject.getString(&quot;teacherName&quot;);
+    Integer teacherAge = jsonObject.getInteger(&quot;teacherAge&quot;);
+
+    System.out.println(&quot;teacherName:  &quot; + teacherName + &quot;   teacherAge:  &quot; + teacherAge);
+
+    JSONObject jsonObjectcourse = jsonObject.getJSONObject(&quot;course&quot;);
+     //获取JSONObject中的数据
+    String courseName = jsonObjectcourse.getString(&quot;courseName&quot;);
+    Integer code = jsonObjectcourse.getInteger(&quot;code&quot;);
+
+    System.out.println(&quot;courseName:  &quot; + courseName + &quot;   code:  &quot; + code);
+
+    JSONArray jsonArraystudents = jsonObject.getJSONArray(&quot;students&quot;);
+
+    //遍历JSONArray
+    for (Object object : jsonArraystudents) {
+
+        JSONObject jsonObjectone = (JSONObject) object;
+        String studentName = jsonObjectone.getString(&quot;studentName&quot;);
+        Integer studentAge = jsonObjectone.getInteger(&quot;studentAge&quot;);
+
+        System.out.println(&quot;studentName:  &quot; + studentName + &quot;   studentAge:  &quot; + studentAge);
+    }
+}
+
+/**
+ * 复杂JSONObject到json格式字符串的转换
+ */
+@Test
+public void testJSONObjectToComplexJSONStr() {
+
+   //复杂JSONObject,目标要转换为json字符串
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    //第一种方式
+    //String jsonString = JSONObject.toJSONString(jsonObject);
+
+    //第二种方式
+    String jsonString = jsonObject.toJSONString();
+    System.out.println(jsonString);
+
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * 复杂json格式字符串到JSONObject的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComplexJSONStrToJSONObject</span><span class="hljs-params">()</span> </span>{
+
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    String teacherName = jsonObject.getString(<span class="hljs-string">"teacherName"</span>);
+    Integer teacherAge = jsonObject.getInteger(<span class="hljs-string">"teacherAge"</span>);
+
+    System.out.println(<span class="hljs-string">"teacherName:  "</span> + teacherName + <span class="hljs-string">"   teacherAge:  "</span> + teacherAge);
+
+    JSONObject jsonObjectcourse = jsonObject.getJSONObject(<span class="hljs-string">"course"</span>);
+     <span class="hljs-comment">//获取JSONObject中的数据</span>
+    String courseName = jsonObjectcourse.getString(<span class="hljs-string">"courseName"</span>);
+    Integer code = jsonObjectcourse.getInteger(<span class="hljs-string">"code"</span>);
+
+    System.out.println(<span class="hljs-string">"courseName:  "</span> + courseName + <span class="hljs-string">"   code:  "</span> + code);
+
+    JSONArray jsonArraystudents = jsonObject.getJSONArray(<span class="hljs-string">"students"</span>);
+
+    <span class="hljs-comment">//遍历JSONArray</span>
+    <span class="hljs-keyword">for</span> (Object object : jsonArraystudents) {
+
+        JSONObject jsonObjectone = (JSONObject) object;
+        String studentName = jsonObjectone.getString(<span class="hljs-string">"studentName"</span>);
+        Integer studentAge = jsonObjectone.getInteger(<span class="hljs-string">"studentAge"</span>);
+
+        System.out.println(<span class="hljs-string">"studentName:  "</span> + studentName + <span class="hljs-string">"   studentAge:  "</span> + studentAge);
+    }
+}
+
+<span class="hljs-comment">/**
+ * 复杂JSONObject到json格式字符串的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONObjectToComplexJSONStr</span><span class="hljs-params">()</span> </span>{
+
+   <span class="hljs-comment">//复杂JSONObject,目标要转换为json字符串</span>
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    <span class="hljs-comment">//第一种方式</span>
+    <span class="hljs-comment">//String jsonString = JSONObject.toJSONString(jsonObject);</span>
+
+    <span class="hljs-comment">//第二种方式</span>
+    String jsonString = jsonObject.toJSONString();
+    System.out.println(jsonString);
+
+}</code></pre>
+<h3 id="item-2-5">2.2.JSON格式字符串与javaBean之间的转换</h3>
+<h4>2.2.1.json字符串-简单对象型与javaBean之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * json字符串-简单对象到JavaBean之间的转换
+ */
+@Test
+public void testJSONStrToJavaBeanObj() {
+
+    //第一种方式
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    String studentName = jsonObject.getString(&quot;studentName&quot;);
+    Integer studentAge = jsonObject.getInteger(&quot;studentAge&quot;);
+
+    //Student student = new Student(studentName, studentAge);
+
+    //第二种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    //Student student = JSONObject.parseObject(JSON_OBJ_STR, new TypeReference&lt;Student&gt;() {});
+
+    //第三种方式,使用Gson的思想
+    Student student = JSONObject.parseObject(JSON_OBJ_STR, Student.class);
+
+    System.out.println(student);
+}
+
+/**
+ * JavaBean到json字符串-简单对象的转换
+ */
+@Test
+public void testJavaBeanObjToJSONStr() {
+
+    Student student = new Student(&quot;lily&quot;, 12);
+    String jsonString = JSONObject.toJSONString(student);
+    System.out.println(jsonString);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * json字符串-简单对象到JavaBean之间的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONStrToJavaBeanObj</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//第一种方式</span>
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    String studentName = jsonObject.getString(<span class="hljs-string">"studentName"</span>);
+    Integer studentAge = jsonObject.getInteger(<span class="hljs-string">"studentAge"</span>);
+
+    <span class="hljs-comment">//Student student = new Student(studentName, studentAge);</span>
+
+    <span class="hljs-comment">//第二种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    <span class="hljs-comment">//Student student = JSONObject.parseObject(JSON_OBJ_STR, new TypeReference&lt;Student&gt;() {});</span>
+
+    <span class="hljs-comment">//第三种方式,使用Gson的思想</span>
+    Student student = JSONObject.parseObject(JSON_OBJ_STR, Student<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+
+    System.out.println(student);
+}
+
+<span class="hljs-comment">/**
+ * JavaBean到json字符串-简单对象的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJavaBeanObjToJSONStr</span><span class="hljs-params">()</span> </span>{
+
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lily"</span>, <span class="hljs-number">12</span>);
+    String jsonString = JSONObject.toJSONString(student);
+    System.out.println(jsonString);
+}</code></pre>
+<h4>2.2.2.json字符串-数组类型与javaBean之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * json字符串-数组类型到JavaBean_List的转换
+ */
+@Test
+public void testJSONStrToJavaBeanList() {
+
+    //第一种方式
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    //遍历JSONArray
+    List&lt;Student&gt; students = new ArrayList&lt;Student&gt;();
+    Student student = null;
+    for (Object object : jsonArray) {
+
+        JSONObject jsonObjectone = (JSONObject) object;
+        String studentName = jsonObjectone.getString(&quot;studentName&quot;);
+        Integer studentAge = jsonObjectone.getInteger(&quot;studentAge&quot;);
+
+        student = new Student(studentName,studentAge);
+        students.add(student);
+    }
+
+    System.out.println(&quot;students:  &quot; + students);
+
+
+    //第二种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    List&lt;Student&gt; studentList = JSONArray.parseObject(JSON_ARRAY_STR, new TypeReference&lt;ArrayList&lt;Student&gt;&gt;() {});
+    System.out.println(&quot;studentList:  &quot; + studentList);
+
+    //第三种方式,使用Gson的思想
+    List&lt;Student&gt; studentList1 = JSONArray.parseArray(JSON_ARRAY_STR, Student.class);
+    System.out.println(&quot;studentList1:  &quot; + studentList1);
+
+}
+
+/**
+ * JavaBean_List到json字符串-数组类型的转换
+ */
+@Test
+public void testJavaBeanListToJSONStr() {
+
+    Student student = new Student(&quot;lily&quot;, 12);
+    Student studenttwo = new Student(&quot;lucy&quot;, 15);
+
+    List&lt;Student&gt; students = new ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+
+    String jsonString = JSONArray.toJSONString(students);
+    System.out.println(jsonString);
+
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * json字符串-数组类型到JavaBean_List的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONStrToJavaBeanList</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//第一种方式</span>
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    <span class="hljs-comment">//遍历JSONArray</span>
+    List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;Student&gt;();
+    Student student = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">for</span> (Object object : jsonArray) {
+
+        JSONObject jsonObjectone = (JSONObject) object;
+        String studentName = jsonObjectone.getString(<span class="hljs-string">"studentName"</span>);
+        Integer studentAge = jsonObjectone.getInteger(<span class="hljs-string">"studentAge"</span>);
+
+        student = <span class="hljs-keyword">new</span> Student(studentName,studentAge);
+        students.add(student);
+    }
+
+    System.out.println(<span class="hljs-string">"students:  "</span> + students);
+
+
+    <span class="hljs-comment">//第二种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    List&lt;Student&gt; studentList = JSONArray.parseObject(JSON_ARRAY_STR, <span class="hljs-keyword">new</span> TypeReference&lt;ArrayList&lt;Student&gt;&gt;() {});
+    System.out.println(<span class="hljs-string">"studentList:  "</span> + studentList);
+
+    <span class="hljs-comment">//第三种方式,使用Gson的思想</span>
+    List&lt;Student&gt; studentList1 = JSONArray.parseArray(JSON_ARRAY_STR, Student<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    System.out.println(<span class="hljs-string">"studentList1:  "</span> + studentList1);
+
+}
+
+<span class="hljs-comment">/**
+ * JavaBean_List到json字符串-数组类型的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJavaBeanListToJSONStr</span><span class="hljs-params">()</span> </span>{
+
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lily"</span>, <span class="hljs-number">12</span>);
+    Student studenttwo = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lucy"</span>, <span class="hljs-number">15</span>);
+
+    List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+
+    String jsonString = JSONArray.toJSONString(students);
+    System.out.println(jsonString);
+
+}</code></pre>
+<h4>2.2.3.复杂json格式字符串与与javaBean之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * 复杂json格式字符串到JavaBean_obj的转换
+ */
+@Test
+public void testComplexJSONStrToJavaBean(){
+
+    //第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    Teacher teacher = JSONObject.parseObject(COMPLEX_JSON_STR, new TypeReference&lt;Teacher&gt;() {});
+    System.out.println(teacher);
+
+    //第二种方式,使用Gson思想
+    Teacher teacher1 = JSONObject.parseObject(COMPLEX_JSON_STR, Teacher.class);
+    System.out.println(teacher1);
+}
+
+/**
+ * 复杂JavaBean_obj到json格式字符串的转换
+ */
+@Test
+public void testJavaBeanToComplexJSONStr(){
+
+    //已知复杂JavaBean_obj
+    Teacher teacher = JSONObject.parseObject(COMPLEX_JSON_STR, new TypeReference&lt;Teacher&gt;() {});
+    String jsonString = JSONObject.toJSONString(teacher);
+    System.out.println(jsonString);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * 复杂json格式字符串到JavaBean_obj的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComplexJSONStrToJavaBean</span><span class="hljs-params">()</span></span>{
+
+    <span class="hljs-comment">//第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    Teacher teacher = JSONObject.parseObject(COMPLEX_JSON_STR, <span class="hljs-keyword">new</span> TypeReference&lt;Teacher&gt;() {});
+    System.out.println(teacher);
+
+    <span class="hljs-comment">//第二种方式,使用Gson思想</span>
+    Teacher teacher1 = JSONObject.parseObject(COMPLEX_JSON_STR, Teacher<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    System.out.println(teacher1);
+}
+
+<span class="hljs-comment">/**
+ * 复杂JavaBean_obj到json格式字符串的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJavaBeanToComplexJSONStr</span><span class="hljs-params">()</span></span>{
+
+    <span class="hljs-comment">//已知复杂JavaBean_obj</span>
+    Teacher teacher = JSONObject.parseObject(COMPLEX_JSON_STR, <span class="hljs-keyword">new</span> TypeReference&lt;Teacher&gt;() {});
+    String jsonString = JSONObject.toJSONString(teacher);
+    System.out.println(jsonString);
+}</code></pre>
+<h3 id="item-2-6">2.3.javaBean与json对象间的之间的转换</h3>
+<h4>2.3.1.简单javaBean与json对象之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * 简单JavaBean_obj到json对象的转换
+ */
+@Test
+public void testJavaBeanToJSONObject(){
+
+    //已知简单JavaBean_obj
+    Student student = new Student(&quot;lily&quot;, 12);
+
+    //方式一
+    String jsonString = JSONObject.toJSONString(student);
+    JSONObject jsonObject = JSONObject.parseObject(jsonString);
+    System.out.println(jsonObject);
+
+    //方式二
+    JSONObject jsonObject1 = (JSONObject) JSONObject.toJSON(student);
+    System.out.println(jsonObject1);
+}
+
+/**
+ * 简单json对象到JavaBean_obj的转换
+ */
+@Test
+public void testJSONObjectToJavaBean(){
+
+    //已知简单json对象
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    //第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    Student student = JSONObject.parseObject(jsonObject.toJSONString(), new TypeReference&lt;Student&gt;() {});
+    System.out.println(student);
+
+    //第二种方式,使用Gson的思想
+    Student student1 = JSONObject.parseObject(jsonObject.toJSONString(), Student.class);
+    System.out.println(student1);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * 简单JavaBean_obj到json对象的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJavaBeanToJSONObject</span><span class="hljs-params">()</span></span>{
+
+    <span class="hljs-comment">//已知简单JavaBean_obj</span>
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lily"</span>, <span class="hljs-number">12</span>);
+
+    <span class="hljs-comment">//方式一</span>
+    String jsonString = JSONObject.toJSONString(student);
+    JSONObject jsonObject = JSONObject.parseObject(jsonString);
+    System.out.println(jsonObject);
+
+    <span class="hljs-comment">//方式二</span>
+    JSONObject jsonObject1 = (JSONObject) JSONObject.toJSON(student);
+    System.out.println(jsonObject1);
+}
+
+<span class="hljs-comment">/**
+ * 简单json对象到JavaBean_obj的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJSONObjectToJavaBean</span><span class="hljs-params">()</span></span>{
+
+    <span class="hljs-comment">//已知简单json对象</span>
+    JSONObject jsonObject = JSONObject.parseObject(JSON_OBJ_STR);
+
+    <span class="hljs-comment">//第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    Student student = JSONObject.parseObject(jsonObject.toJSONString(), <span class="hljs-keyword">new</span> TypeReference&lt;Student&gt;() {});
+    System.out.println(student);
+
+    <span class="hljs-comment">//第二种方式,使用Gson的思想</span>
+    Student student1 = JSONObject.parseObject(jsonObject.toJSONString(), Student<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    System.out.println(student1);
+}</code></pre>
+<h4>2.3.2.JavaList与JsonArray之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * JavaList到JsonArray的转换
+ */
+@Test
+public void testJavaListToJsonArray() {
+
+    //已知JavaList
+    Student student = new Student(&quot;lily&quot;, 12);
+    Student studenttwo = new Student(&quot;lucy&quot;, 15);
+
+    List&lt;Student&gt; students = new ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+
+    //方式一
+    String jsonString = JSONArray.toJSONString(students);
+    JSONArray jsonArray = JSONArray.parseArray(jsonString);
+    System.out.println(jsonArray);
+
+    //方式二
+    JSONArray jsonArray1 = (JSONArray) JSONArray.toJSON(students);
+    System.out.println(jsonArray1);
+}
+
+/**
+ * JsonArray到JavaList的转换
+ */
+@Test
+public void testJsonArrayToJavaList() {
+
+    //已知JsonArray
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    //第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    ArrayList&lt;Student&gt; students = JSONArray.parseObject(jsonArray.toJSONString(),
+            new TypeReference&lt;ArrayList&lt;Student&gt;&gt;() {});
+
+    System.out.println(students);
+
+    //第二种方式,使用Gson的思想
+    List&lt;Student&gt; students1 = JSONArray.parseArray(jsonArray.toJSONString(), Student.class);
+    System.out.println(students1);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * JavaList到JsonArray的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJavaListToJsonArray</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知JavaList</span>
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lily"</span>, <span class="hljs-number">12</span>);
+    Student studenttwo = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lucy"</span>, <span class="hljs-number">15</span>);
+
+    List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+
+    <span class="hljs-comment">//方式一</span>
+    String jsonString = JSONArray.toJSONString(students);
+    JSONArray jsonArray = JSONArray.parseArray(jsonString);
+    System.out.println(jsonArray);
+
+    <span class="hljs-comment">//方式二</span>
+    JSONArray jsonArray1 = (JSONArray) JSONArray.toJSON(students);
+    System.out.println(jsonArray1);
+}
+
+<span class="hljs-comment">/**
+ * JsonArray到JavaList的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testJsonArrayToJavaList</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知JsonArray</span>
+    JSONArray jsonArray = JSONArray.parseArray(JSON_ARRAY_STR);
+
+    <span class="hljs-comment">//第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    ArrayList&lt;Student&gt; students = JSONArray.parseObject(jsonArray.toJSONString(),
+            <span class="hljs-keyword">new</span> TypeReference&lt;ArrayList&lt;Student&gt;&gt;() {});
+
+    System.out.println(students);
+
+    <span class="hljs-comment">//第二种方式,使用Gson的思想</span>
+    List&lt;Student&gt; students1 = JSONArray.parseArray(jsonArray.toJSONString(), Student<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    System.out.println(students1);
+}</code></pre>
+<h4>2.3.3.复杂JavaBean_obj与json对象之间的转换</h4>
+<div class="widget-codetool" style="display:none;">
+        <div class="widget-codetool--inner">
+        <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+        <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+ * 复杂JavaBean_obj到json对象的转换
+ */
+@Test
+public void testComplexJavaBeanToJSONObject() {
+
+    //已知复杂JavaBean_obj
+    Student student = new Student(&quot;lily&quot;, 12);
+    Student studenttwo = new Student(&quot;lucy&quot;, 15);
+
+    List&lt;Student&gt; students = new ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+    Course course = new Course(&quot;english&quot;, 1270);
+
+    Teacher teacher = new Teacher(&quot;crystall&quot;, 27, course, students);
+
+    //方式一
+    String jsonString = JSONObject.toJSONString(teacher);
+    JSONObject jsonObject = JSONObject.parseObject(jsonString);
+    System.out.println(jsonObject);
+
+    //方式二
+    JSONObject jsonObject1 = (JSONObject) JSONObject.toJSON(teacher);
+    System.out.println(jsonObject1);
+
+}
+
+/**
+ * 复杂json对象到JavaBean_obj的转换
+ */
+@Test
+public void testComplexJSONObjectToJavaBean() {
+
+    //已知复杂json对象
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    //第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类
+    Teacher teacher = JSONObject.parseObject(jsonObject.toJSONString(), new TypeReference&lt;Teacher&gt;() {});
+    System.out.println(teacher);
+
+    //第二种方式,使用Gson的思想
+    Teacher teacher1 = JSONObject.parseObject(jsonObject.toJSONString(), Teacher.class);
+    System.out.println(teacher1);
+}" title="" data-original-title="复制"></span>
+        </div>
+        </div><pre class="java hljs"><code class="java"><span class="hljs-comment">/**
+ * 复杂JavaBean_obj到json对象的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComplexJavaBeanToJSONObject</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知复杂JavaBean_obj</span>
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lily"</span>, <span class="hljs-number">12</span>);
+    Student studenttwo = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"lucy"</span>, <span class="hljs-number">15</span>);
+
+    List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;Student&gt;();
+    students.add(student);
+    students.add(studenttwo);
+    Course course = <span class="hljs-keyword">new</span> Course(<span class="hljs-string">"english"</span>, <span class="hljs-number">1270</span>);
+
+    Teacher teacher = <span class="hljs-keyword">new</span> Teacher(<span class="hljs-string">"crystall"</span>, <span class="hljs-number">27</span>, course, students);
+
+    <span class="hljs-comment">//方式一</span>
+    String jsonString = JSONObject.toJSONString(teacher);
+    JSONObject jsonObject = JSONObject.parseObject(jsonString);
+    System.out.println(jsonObject);
+
+    <span class="hljs-comment">//方式二</span>
+    JSONObject jsonObject1 = (JSONObject) JSONObject.toJSON(teacher);
+    System.out.println(jsonObject1);
+
+}
+
+<span class="hljs-comment">/**
+ * 复杂json对象到JavaBean_obj的转换
+ */</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComplexJSONObjectToJavaBean</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//已知复杂json对象</span>
+    JSONObject jsonObject = JSONObject.parseObject(COMPLEX_JSON_STR);
+
+    <span class="hljs-comment">//第一种方式,使用TypeReference&lt;T&gt;类,由于其构造方法使用protected进行修饰,故创建其子类</span>
+    Teacher teacher = JSONObject.parseObject(jsonObject.toJSONString(), <span class="hljs-keyword">new</span> TypeReference&lt;Teacher&gt;() {});
+    System.out.println(teacher);
+
+    <span class="hljs-comment">//第二种方式,使用Gson的思想</span>
+    Teacher teacher1 = JSONObject.parseObject(jsonObject.toJSONString(), Teacher<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    System.out.println(teacher1);
+}</code></pre>
+<h2 id="item-3">3.源码</h2>
+<p>本篇博客的源码都在我的Github上,<a href="https://github.com/zhouxu2016/ALiFastJson" rel="nofollow noreferrer" target="_blank">FastJsonDemo</a>,欢迎大家Fork and Star!</p>
+<h2 id="item-4">4.总结</h2>
+<p>好啦,FastJson的基本用法就介绍完了,送人玫瑰,手留余香,学习使我快乐,分享让大家快乐,欢迎大家点赞收藏噢!</p>
+
+                            </article>
+
+                            <div class="d-none d-lg-block">
+                                <script type="text/javascript">
+                                OA_show(3);
+                                </script><div id="OA_holder_3"></div>
+                            </div>
+
+                            <div class="text-secondary font-size-14 mt-3 mb-5 d-flex justify-content-between row">
+                                                                    <div class="col-6 text-secondary" id="sf-article_metas">阅读 119.9k<span class="split-dot"></span><span data-toggle="tooltip" data-placement="top" title="" data-original-title="发布于 2017-09-17 ">更新于 2017-09-17 </span>
+                                    </div><div></div>
+                                                                <div class="operation col-6 text-right">
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                </div>
+                            </div>
+
+                            <div class="functional-area-bottom"><div class="text-center"><div class="btn-group like-group mr-2" role="group">
+            <button data-type="question" class="func-btn mainLike like-btn btn btn-outline-primary 
+                            " data-id="1190000011212806">
+                            <svg class="svg-inline--fa fa-thumbs-up fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M466.27 286.69C475.04 271.84 480 256 480 236.85c0-44.015-37.218-85.58-85.82-85.58H357.7c4.92-12.81 8.85-28.13 8.85-46.54C366.55 31.936 328.86 0 271.28 0c-61.607 0-58.093 94.933-71.76 108.6-22.747 22.747-49.615 66.447-68.76 83.4H32c-17.673 0-32 14.327-32 32v240c0 17.673 14.327 32 32 32h64c14.893 0 27.408-10.174 30.978-23.95 44.509 1.001 75.06 39.94 177.802 39.94 7.22 0 15.22.01 22.22.01 77.117 0 111.986-39.423 112.94-95.33 13.319-18.425 20.299-43.122 17.34-66.99 9.854-18.452 13.664-40.343 8.99-62.99zm-61.75 53.83c12.56 21.13 1.26 49.41-13.94 57.57 7.7 48.78-17.608 65.9-53.12 65.9h-37.82c-71.639 0-118.029-37.82-171.64-37.82V240h10.92c28.36 0 67.98-70.89 94.54-97.46 28.36-28.36 18.91-75.63 37.82-94.54 47.27 0 47.27 32.98 47.27 56.73 0 39.17-28.36 56.72-28.36 94.54h103.99c21.11 0 37.73 18.91 37.82 37.82.09 18.9-12.82 37.81-22.27 37.81 13.489 14.555 16.371 45.236-5.21 65.62zM88 432c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"></path></svg><!-- <i class="far fa-thumbs-up"></i> -->
+                            <span class="ml-1">赞</span> <span class="mainLikeNum">46</span>
+                        </button></div><button class="func-btn mainBookmark btn btn-outline-secondary 
+                                mr-2 " data-id="1190000011212806">
+                                <svg class="svg-inline--fa fa-bookmark fa-w-12" aria-hidden="true" focusable="false" data-prefix="far" data-icon="bookmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84-144 84V54a6 6 0 0 1 6-6h276c3.314 0 6 2.683 6 5.996V428.43z"></path></svg><!-- <i class="far fa-bookmark"></i> -->
+                                <span class="ml-1">收藏</span> <span class="bookmarkNum">38</span>
+                            </button><button class="func-btn show-row article-reward-btn btn btn-outline-danger
+                        mr-2 ">
+                        <svg class="svg-inline--fa fa-yen-sign fa-w-12" aria-hidden="true" focusable="false" data-prefix="far" data-icon="yen-sign" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M347.983 32h-44.065a12.001 12.001 0 0 0-10.555 6.291l-73.76 133.313c-13.96 29.825-27.286 64.725-27.286 64.725h-1.269s-13.326-34.901-27.287-64.725L90.689 38.328A12 12 0 0 0 80.115 32H36.017c-9.157 0-14.94 9.844-10.481 17.843L119.746 216H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h77.18l14.775 26.267V312H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h91.955v108c0 6.627 5.373 12 12 12h39.456c6.627 0 12-5.373 12-12V360H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-92.589v-21.733L238.185 264H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-52.367L358.45 49.87c4.485-7.999-1.296-17.87-10.467-17.87z"></path></svg><!-- <i class="far fa-yen-sign"></i> -->
+                        <span class="ml-1">赞赏</span>
+                    </button><div class="dropdown dropup d-inline-block">
+                        <button class="func-btn btn btn-outline-secondary
+                        " id="func_share" data-toggle="dropdown">
+                        <svg class="svg-inline--fa fa-share-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="far" data-icon="share-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M352 320c-25.6 0-48.9 10-66.1 26.4l-98.3-61.5c5.9-18.8 5.9-39.1 0-57.8l98.3-61.5C303.1 182 326.4 192 352 192c53 0 96-43 96-96S405 0 352 0s-96 43-96 96c0 9.8 1.5 19.6 4.4 28.9l-98.3 61.5C144.9 170 121.6 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.6 0 48.9-10 66.1-26.4l98.3 61.5c-2.9 9.4-4.4 19.1-4.4 28.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96zm0-272c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zM96 304c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm256 160c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"></path></svg><!-- <i class="far fa-share-alt"></i> -->
+                        <span class="ml-1 show-row">分享</span>
+                        </button>
+                        <div class="dropdown-menu shareContent" aria-labelledby="func_share">
+                            <div class="text-center mt-2" style="cursor: auto">
+                                <div class="qr"><img crossorigin="anonymous" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHYAAAB2CAYAAAAdp2cRAAADN0lEQVR4nO3dQW4jMQxE0dzJ9z+bsssisN0qVZFqy59AVk1RJJ+CWQwG8zOII+NnjDEej0frz/9Q89VQ63XPV7FfYCfygQUWWGVwN4ANLfJqsO5QF69+d+93A1hg6y/uDGCB/S7YlT+8lcHUwdV+7g5b0T+wBf259YEF9mV9YAv6c+sfC1sN4c6jBrDAAgvs+/rAArsPNr347vPAAgsssO/rA/vNsG6kF+Hmq+fdh7Vjv8BOnAdWuHhnvnoeWOHinfnq+WNgq3/UwU/73rFfYIEFFlhg7wF7t3AXmc5XH+odAtiJfGBDAawfwE7kfyxs4g/rd5GGqg63n+6H9Ow7sE8CWGAj54Ftiq+FVRtzB3Nj96LTvygz8wG70A+wwAIL7AbYdONpuJXBk+e7H+ZMfWAD54EFNtI/sC/6TZ8/Bvbq4nT+1Xn3IXU/5PRDeHYe2Il+gAUWWGAbYNVB3cFXGq383v2w1Xor9YEFdr0RYLUAFtiXsfQPn7sbTwyqzJPeR7rfmX0ACyyws9/d/KvzwE7en/7u5l+dX4Z1G19pxIlqaDU//VCBBRZY5zywwH4WbDVMetG7+08/9Jl8YIHVCisBLLBT59P5bv+3gVULpR+Cu4jqh1rdX6JfYG/YH7DAAvtJ/cVg3XAXU32/usg0dHW/zwJYYOcHS+e79YBdDGBvCptuJL3Yagj1ezo/3c8YwAIL7Ho9dR9u/TGAPRvWbWTlYuU+N7968dUBLLB/AexEPWCBLYkYrAqZhlehuh9W9X4S8wFbcP/u/Y0BbMn9u/c3BrAl9+/e3xg3+c8euh/C7n7VeivwwG7oV60HLLDA7uxXrbcMmy6cHtxdbPVDce+vmAfYifrV9wNbuAglH1hgt9QbY/Iv2t1wF5uGUfPTD+fqPLBF96W/q/cDW3Rf+rt6P7BF96W/q/e3wV5dnB7crZ+ep7pexf6BBRZYYIEFdua7C+n2cwcodR5ggQUWWHOR6iDAHgqbzq+uV/0QxwB2KYA1GutcjBrAGo11LkaNY2Dd2A2bPu/W6/hFABbY9QBWywcWWA22+qdiEGWRan9qvXT+yj6ABRbY2Xrp/JV9AHsyLHFe/AKO8Zd3mJPTwQAAAABJRU5ErkJggg==" style="width: 118px; height: 118px;" width="118" height="118"></div>
+                                扫一扫分享
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> 新浪微博</a><a class="dropdown-item share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> Twitter</a><a class="dropdown-item share_facebook" data-share="facebook" href="javascript:;" target="_blank"><svg class="svg-inline--fa fa-facebook-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg><!-- <i class="fab fa-facebook-square fa-fw"></i> --> Facebook</a></div>
+                    </div></div></div>
+
+                            <div class="text-center mb-5 mt-3 text-secondary font-size-14">
+                                本作品系
+                                原创
+                                 ，
+                                                                                                            <a target="_blank" class="text-secondary" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">采用《署名-非商业性使用-禁止演绎
+                                            4.0 国际》许可协议</a>
+                                                                                                </div>
+                            <hr class="mb-0">
+                            <div class="article-author d-flex flex-sm-row align-items-center pt-4 row">
+                                <div class="d-flex align-items-center flex-grow-1 author-left col-sm-9 col-12">
+                                    <a href="https://segmentfault.com/u/zhouxu_2017">
+                                        <img class="rounded-circle mr-3" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/3266807223-59bcc83088432_big64" aria-hidden="true" width="64">
+                                    </a>
+                                    <div>
+                                        <h5><a class="text-body" href="https://segmentfault.com/u/zhouxu_2017">周旭</a></h5>
+                                        <ul class="list-inline mb-0 authentication-info">
+                                                                                        <li class="list-inline-item">
+                                                <svg class="svg-inline--fa fa-dice-d8 fa-w-16" style="color: #BF7158;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dice-d8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M225.53 2.52L2.36 233.83c-4.21 4.37-2.56 11.71 3.1 13.77l234.13 85.06V8.39c-.01-7.49-8.91-11.21-14.06-5.87zm284.11 231.31L286.47 2.52C281.32-2.82 272.41.9 272.41 8.4v324.27l234.13-85.06c5.66-2.07 7.31-9.42 3.1-13.78zM33.53 310.38l192 199.1c5.15 5.34 14.06 1.62 14.06-5.88V368.29L42.13 296.61c-8.21-2.98-14.72 7.43-8.6 13.77zm436.34-13.77l-197.46 71.68V503.6c0 7.5 8.91 11.22 14.06 5.88l192-199.1c6.12-6.34-.39-16.75-8.6-13.77z"></path></svg><!-- <i class="fas fa-dice-d8" style="color:#BF7158"></i> -->
+                                                <span style="color: #BF7158; font-size:16px; font-weight:bold">74</span>
+                                            </li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="author-right flex-shrink-0 col-sm-3 col-12 text-sm-right text-left mt-sm-0 mt-3">
+                                                                                                                <button type="button" class="btn btn-primary follow-user sf_do" data-dotype="post" data-content="{&quot;type&quot;:&quot;state&quot;,&quot;state&quot;:false,&quot;true&quot;:&quot;\u5173\u6ce8\u4f5c\u8005&quot;,&quot;false&quot;:&quot;\u6b63\u5728\u5173\u6ce8&quot;}" data-api="/iteration/api/user/1030000011199513/follow">关注作者
+                                        </button>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                                                            <div id="comment-area" class="my-4" data-type="article" data-id="1190000011212806" data-page="1" data-user="null"><div class="d-flex justify-content-between mb-2">
+                <div id="comment-total" class="h5 mb-0">1 条评论</div>
+                <div>
+                    <a href="javascript:;" class="sort text-dark" data-sort="default">得票</a><span class="split-dot"></span><a href="javascript:;" class="sort text-secondary" data-sort="desc">时间</a>
+                </div>
+            </div><div class="card border-0">
+                <div class="card-body">
+                    <div class="media">
+                        <img src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/user-128.png" class="rounded-circle mr-3" aria-hidden="true" width="38">
+                        <form class="media-body" action="/api/article/1190000011212806/comments/add">
+                            <div class="form-group">
+                                <textarea autoheight="true" class="form-control comment-text" rows="1" placeholder="撰写评论 ..." style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 38px;" name="text"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button data-js-replay-submit-btn="" type="button" submit-type="comment" class="btn btn-primary float-right" disabled="disabled">提交评论</button>
+                                <input type="hidden" name="objectId" value="1190000011212806" autocomplete="off">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="comment-body"><div class="media mb-4" id="comment-1050000015899867">
+        <img class="d-block rounded-circle mr-3" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/user-64.png" alt="" width="38" height="38">
+        <div class="media-body w-0">
+            <div class="commentUnit">
+                <div class="mb-2">
+                    <a class="d-uname" href="https://segmentfault.com/u/tingyu_5b347cf03764b" target="_blank"><strong>听雨</strong></a>
+                     ：
+                    <div class="parsedText fmt"><p>不需要传入TypeReference,只需要传入class就可以了</p></div>
+                </div>
+
+                <form class="d-none edit-form edit-top-comment-form" action="/api/comment/1050000015899867/edit" method="post">
+                    <div class="form-group">
+                        <textarea autoheight="true" class="form-control comment-text" rows="1" placeholder="撰写评论 ..." style="overflow: hidden; overflow-wrap: break-word; resize: none;" name="text" data-init="不需要传入TypeReference,只需要传入class就可以了"></textarea>
+                    </div>
+                    <div class="my-3 d-flex align-content-center justify-content-end">
+                        <button type="button" class="btn btn-outline-secondary btn-sm mr-2 edit-top-comment-cancel-btn cancelEdit">
+                            取消
+                        </button>
+                        <button type="button" submit-type="comment-edit" class="btn btn-primary btn-sm">
+                            提交
+                        </button>
+                        <input type="hidden" name="objectId" value="1190000011212806" autocomplete="off">
+                        <input type="hidden" name="id" value="1050000015899867" autocomplete="off">
+                    </div>
+                </form>
+
+                <div class="handle-bar font-size-14 d-flex justify-content-between">
+                    <div>
+                        <a class="text-secondary" href="javascript:;">
+                        <span class="mainLike-comment " data-id="1050000015899867">
+                            <svg class="svg-inline--fa fa-thumbs-up fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M466.27 286.69C475.04 271.84 480 256 480 236.85c0-44.015-37.218-85.58-85.82-85.58H357.7c4.92-12.81 8.85-28.13 8.85-46.54C366.55 31.936 328.86 0 271.28 0c-61.607 0-58.093 94.933-71.76 108.6-22.747 22.747-49.615 66.447-68.76 83.4H32c-17.673 0-32 14.327-32 32v240c0 17.673 14.327 32 32 32h64c14.893 0 27.408-10.174 30.978-23.95 44.509 1.001 75.06 39.94 177.802 39.94 7.22 0 15.22.01 22.22.01 77.117 0 111.986-39.423 112.94-95.33 13.319-18.425 20.299-43.122 17.34-66.99 9.854-18.452 13.664-40.343 8.99-62.99zm-61.75 53.83c12.56 21.13 1.26 49.41-13.94 57.57 7.7 48.78-17.608 65.9-53.12 65.9h-37.82c-71.639 0-118.029-37.82-171.64-37.82V240h10.92c28.36 0 67.98-70.89 94.54-97.46 28.36-28.36 18.91-75.63 37.82-94.54 47.27 0 47.27 32.98 47.27 56.73 0 39.17-28.36 56.72-28.36 94.54h103.99c21.11 0 37.73 18.91 37.82 37.82.09 18.9-12.82 37.81-22.27 37.81 13.489 14.555 16.371 45.236-5.21 65.62zM88 432c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"></path></svg><!-- <i class="far fa-thumbs-up mr-1"></i> -->
+                        </span>
+                            <span data-icon-count-size="" data-count-hidden="true" class="mainLike-commentNum">
+                                </span>
+                        </a>
+                        <span class="split-dot"></span>
+                        <a class="text-secondary btn-comment" href="javascript:;" data-id="1050000015899867">回复</a>
+                        <span class="split-dot"></span>
+                        <span class="ml-1 text-secondary">2018-08-06 </span>
+                    </div>
+                    <div class="control-area d-none">
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                <div class="card bg-light border-0 mt-2 d-none" id="comment-1050000015899867-form">
+                    <form class="card-body my-2 add-comment-form py-0 pt-3" action="/api/comment/1050000015899867/reply" method="post">
+                        <div class="form-group">
+                            <textarea autoheight="true" class="form-control form-control-sm comment-text" rows="1" placeholder="撰写评论 ..." style="overflow: hidden; overflow-wrap: break-word; resize: none;" name="text" aria-placeholder="撰写评论..."></textarea>
+                        </div>
+                        <div class="mt-y d-flex align-content-center justify-content-end">
+                            <button type="button" submit-type="reply" class="btn btn-primary btn-sm" data-commentid="1050000015899867">
+                                提交评论
+                            </button>
+                            <input type="hidden" name="objectId" value="1050000015899867" autocomplete="off">
+                            <input type="hidden" name="replyUserId" value="1030000015415771" autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="replies">
+
+            
+            <div class="card bg-light border-0 mt-2">
+                <div class="card-body py-0" style="min-height:0">
+                    <ul class="list-group list-group-flush reply-list" data-page="1">
+
+                    </ul>
+
+                    
+                </div>
+            </div></div>
+        </div>
+    </div></div><div class="sflex-center comment-pagination"></div>
+                </div>
+            </div></div>
+                                        <h5 class="mt-4">推荐阅读</h5>
+                    <div class="card border-0 mb-4">
+                        <div class="list-group list-group-flush" id="paradigm-article-related"><a href="http://segmentfault.com/a/1190000012162500" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">JSON应知应会</h5>
+                                <p class="mb-2 text-truncate text-secondary">简
+介：JSON（JavaScriptObjectNotation）、轻量级数据交换格式、非常适合于服务器与JavaScript的交互。1、对象对象
+是一个无序的“‘名称值’对”集合。一个对象以“”（左括号）开始，“”（右括号）结束。每个“名称”后跟一个“:”（冒号）；“‘名称值’对”之间使用
+“,”（逗号）分隔。2、数组数组是值（value）的有序集合。一个数组以“”（左中括号）开始，“”（右中括号）</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">songboriceboy</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>11</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000008656963" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">js温故而知新6(JSON)——学习廖雪峰的js教程</h5>
+                                <p class="mb-2 text-truncate text-secondary">JSON
+是JavaScriptObjectNotation的缩写，它是一种数据交换格式。道格拉斯·克罗克福特（DouglasCrockford）--雅虎
+的高级架构师--发明了JSON这种超轻量级的数据交换格式.让我们先把小明这个对象序列化成JSON格式的字符串：要输出得好看一些，可以加上参数，按
+缩进输出：结果：第二个参数用于控制如何筛选对象的键值，如果我们只想输出指定的属性，可以传入Array：结</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">chinawzc</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>4</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000013315759" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">NPM酷库044：json5，更可读的JSON</h5>
+                                <p class="mb-2 text-truncate text-secondary">NPM
+酷库，每天两分钟，了解一个流行NPM库。·JSON是JS中数据交换时最常用的数据格式，其序列话和反序列化性能非常好，但是其语法却比较严格，比如以
+下是一个合法的JS声明，却不是一个合法的JSON：JSON格式强制要求对象key必须以双引号包含，字符串也必须使用双引号，等等。如果我们只是调用
+JSON.stringify()和JSON.parse()来进行数据的处理，那么也没什么关系，但是如果我们</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">脉冲云_梁兴臣</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>54</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000011085637" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">JSON 初探</h5>
+                                <p class="mb-2 text-truncate text-secondary">包
+括字符串、数值、布尔值、null包括简单值或对象。为不同类型的无序键值对集合包括简单值、对象、数组。为相同类型的有序数据集合要点：要点：JSON
+的序列化采用JSON.stringify()方法JSON.stringify(obj,)JSON的解析采用JSON.parse()方法</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">sls0927</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>103</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000004998532" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">深入浅出Javascript：JSON对象</h5>
+                                <p class="mb-2 text-truncate text-secondary">ES5
+提供一个全局的JSON对象，用来序列化(JSON.stringify)和反序列化(JSON.parse)对象为JSON格式。允许接受一个
+ECMAScript值然后转换成JSON格式的字符串。在其最简单的形式中，JSON.stringify接受一个值返回一个字符串，如果我们需要改变
+值字符串化的方式，或是对我们选择的提供过滤，我们可以将其传给replacer函数。如果replacer方法返回un</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">幸运儿</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>379</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000008760911" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">动手实现一个JSON验证器</h5>
+                                <p class="mb-2 text-truncate text-secondary">最
+近做毕设的时候，有个功能需要验证JSON字符串的合法性，最简单的做法是直接用Go的第三方JSON库做一个反序列化，但这样做给我有种杀鸡用牛刀的感
+觉，毕竟我不需要真正的反序列化它，单纯的验证和反序列化的性能差距直观感觉上还是比较大的。既然要验证JSON的有效性，那么必然需要清楚的知道
+JSON格式，这个在JSON官网已经给我们画出来了：从官方的图上面可以看出，JSON的组成一共有五部分：object</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">疯狂的爱因斯坦</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>5</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000016486680" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">高程3总结#第20章JSON</h5>
+                                <p class="mb-2 text-truncate text-secondary">JSON
+语法可以表示三种类型的值JSON数组没有变量和分号JSON对象有两个方法：stringify()和parse()，在最简单情况下，两个方法分别用
+于把JavaScript对象序列化为JSON字符串和把JSON字符串解析为原生JavaScript值JSON.stringify()除了要序列化
+的JavaScript对象外，还可以接收另外两个参数，这两个参数用于指定以不同的方式序列化JavaScr</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">神膘护体小月半</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>808</span>
+                                </p>
+                            </a><a href="http://segmentfault.com/a/1190000014840473" target="_blank" class="list-group-item list-group-item-action py-3">
+                                <h5 class="text-body">fastjson 的使用总结</h5>
+                                <p class="mb-2 text-truncate text-secondary">最
+近在开发过程中使用了大量的json作为前后端数据交换的方式,由于之前没有对json做过系统的学习,所有在使用过程中查阅了大量的文档与资料,这里主
+要记录了我在开发后对json以及fastjson使用的总结JSON(javaScriptObjectNotation)是一种轻量级的数据交换格
+式。主要采用键值对(name:json)的方式来保存和表示数据。JSON是JS对象的字符串表示法，它使用文本表示</p>
+                                <p class="text-secondary mb-0 font-size-14">
+                                    <span class="text-primary">dmego</span>
+                                    <span class="split-dot"></span>
+                                    阅读
+                                    <span>193</span>
+                                </p>
+                            </a></div>
+                    </div>
+
+                </div>
+
+                                <div class="col-12 col-xl-auto">
+                    <div class="w-xl-300">
+                                                    <div class="blog card mb-4 border-0">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="media-avatar rounded mr-3" aria-hidden="true"></div>
+                                        <div style="flex:1">
+                                            <h5><a class="text-body" href="https://segmentfault.com/blog/zhouxu2017">Java</a></h5>
+                                            <span class="badge badge-primary" style="background-color: #007bff">用户专栏</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-secondary text-truncate-2">有关Java的框架技术博客,以及Java后端的技术博客</p>
+                                    <div class="d-flex mb-3">
+                                        <div class="mr-4">
+                                            <strong id="blog-followers-count" class="followNum">7</strong>
+                                            <span class="text-secondary">人关注</span>
+                                        </div>
+                                        <div>
+                                            <strong>1</strong>
+                                            <span class="text-secondary">篇文章</span>
+                                        </div>
+                                    </div>
+                                                                        <div class="d-flex">
+                                                                                    <button type="button" class="btn btn-primary mr-2 sf_do" data-number-tag-class="followNum" data-dotype="post" data-content="{&quot;type&quot;:&quot;state&quot;,&quot;state&quot;:false,&quot;true&quot;:&quot;\u5173\u6ce8\u4e13\u680f&quot;,&quot;false&quot;:&quot;\u6b63\u5728\u5173\u6ce8&quot;}" data-api="/iteration/api/blog/1200000011199689/follow">关注专栏
+                                            </button>
+                                        
+                                        <a class="btn btn-outline-primary" href="https://segmentfault.com/blog/zhouxu2017">专栏主页</a>
+                                    </div>
+                                </div>
+                            </div><div></div>
+                            <!-- / 专栏信息 -->
+                        
+                        <div class="card border-0 overflow-hidden d-none d-xl-flex justify-content-center align-items-center float-ads">
+                            <script type="text/javascript">
+                              OA_show(1);
+                            </script><div id="OA_holder_1"></div>
+                        </div>
+                        <!-- / 矩形广告位 -->
+
+                        <div class="card border-0 d-none d-xl-flex mt-4">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <div class="mb25 hidden-md hidden-sm hidden-xs">
+    <img src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/20200508.png" alt="Planets" usemap="#gridsMap" width="255" height="136">
+    <map name="gridsMap" id="gridsMap"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000022197859)" coords="238,119,255,136" href="https://segmentfault.com/sponsor/1750000022197859/redirect" stitle="萌搜 小众搜索引擎"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000022460532)" coords="153,68,238,85" href="https://segmentfault.com/sponsor/1750000022460532/redirect" stitle="超好用的接口管理工具"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000022486245)" coords="0,0,17,17" href="https://segmentfault.com/sponsor/1750000022486245/redirect" stitle="面向开发者的工具网站"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000022520600)" coords="34,119,153,136" href="https://segmentfault.com/sponsor/1750000022520600/redirect" stitle="华为云1核2G服务器99元起"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000022567304)" coords="102,51,119,68" href="https://segmentfault.com/sponsor/1750000022567304/redirect" stitle="短网址生成平台"></map>
+    <div style="text-align: center;"><a style="color:#9E9E9E; font-size:12px" href="https://segmentfault.com/sponsor">广告位促销，月曝光三千万，10 元/天</a></div>
+        <script async="" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/20200508.js"></script>
+</div>
+                                </div>
+
+                                <div class="side-promote-link">
+                                    <script type="text/javascript">
+                                      OA_show(7);
+                                      OA_show(9);
+                                      OA_show(10);
+                                      OA_show(15);
+                                      OA_show(16);
+                                    </script><div id="OA_holder_7"></div><div id="OA_holder_9"></div><div id="OA_holder_10"></div><div id="OA_holder_15"></div><div id="OA_holder_16"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / 格子广告、链接广告 -->
+
+                        <div class="card border-0 mt-4 overflow-hidden d-none d-xl-flex" data-article-nav="">
+                            <div class="card-body">
+                                <h6 class="pt-3 position-relative bg-white" style="margin-top:-1.25rem; height:45px">
+                                    目录</h6>
+                                <nav id="article-nav-list" data-article-nav-list="" class="font-size-14">
+
+                                <a class="nav-link text-secondary p-0 my-1 text-truncate" href="#item-1" data-offsettop="781">1.前言</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-1-1" data-offsettop="806">1.1.FastJson的介绍:</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-1-2" data-offsettop="831">1.2.FastJson的特点:</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-1-3" data-offsettop="856">1.3.FastJson的简单说明:</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="#item-2" data-offsettop="881">2.FastJson的用法</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-2-4" data-offsettop="906">2.1.JSON格式字符串与JSON对象之间的转换</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-2-5" data-offsettop="931">2.2.JSON格式字符串与javaBean之间的转换</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="#item-2-6" data-offsettop="956">2.3.javaBean与json对象间的之间的转换</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="#item-3" data-offsettop="981">3.源码</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="#item-4" data-offsettop="1006">4.总结</a></nav>
+                            </div>
+                        </div>
+                        <!-- / 目录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      var ARTICLE = {
+        articleId: 1190000011212806,
+        title: "高性能JSON框架之FastJson的简单使用",
+        isLiked: false,
+        votes: 46,
+        isBookmarked: false,
+        bookmarks: 38,
+        canReward: true
+      }
+    </script>
+
+    
+
+
+
+
+
+
+
+<script type="text/javascript">
+  OA_show(4);
+</script><div id="OA_holder_4"></div>
+
+<footer id="footer" class="bg-white py-5 font-size-14">
+    <div class="container">
+        <div class="row">
+            <dl class="col-4 col-md-2">
+                <dt class="h6">产品</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/questions/hottest?utm_source=sf-footer" target="_blank">热门问答</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blogs/hottest?utm_source=sf-footer" target="_blank">热门专栏</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives?utm_source=sf-footer" target="_blank">热门课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/events?utm_source=sf-footer" target="_blank">最新活动</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?utm_source=sf-footer" target="_blank">技术圈</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">酷工作</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/app?utm_source=sf-footer" target="_blank">移动客户端</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">课程</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=java&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Java 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=php&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">PHP 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=python&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Python 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?category=1&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">前端开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/study?category=3&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">移动开发课程</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2 ">
+                <dt class="h6">资源</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/weekly?utm_source=sf-footer" target="_blank">每周精选</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/users?utm_source=sf-footer" target="_blank">用户排行榜</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/badges?utm_source=sf-footer" target="_blank">徽章</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/faq?utm_source=sf-footer" target="_blank">帮助中心</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/repu?utm_source=sf-footer" target="_blank">声望与权限</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/community?utm_source=sf-footer" target="_blank">社区服务中心</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">合作</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://about.segmentfault.com/?utm_source=sf-footer" target="_blank">关于我们</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://business.segmentfault.com/ads?utm_source=sf-footer" target="_blank">广告投放</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">职位发布</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://jinshuju.net/f/HK5r9K?utm_source=sf-footer" target="_blank">讲师招募</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://about.segmentfault.com/contact.html?utm_source=sf-footer" target="_blank">联系我们</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/link?utm_source=sf-footer" target="_blank">合作伙伴</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">关注</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault?utm_source=sf-footer" target="_blank">产品技术日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/community_admin?utm_source=sf-footer" target="_blank">社区运营日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault_news?utm_source=sf-footer" target="_blank">市场运营日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault_team?utm_source=sf-footer" target="_blank">团队日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/interview?utm_source=sf-footer" target="_blank">社区访谈</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2" id="license">
+                <dt class="h6">条款</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/tos?utm_source=sf-footer" target="_blank">服务条款</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/privacy?utm_source=sf-footer" target="_blank">隐私政策</a></dd>
+                                <dd class="my-1">
+                    <a class="text-secondary" href="https://segmentfault.com/app?utm_source=sf-footer">下载 App</a>
+                </dd>
+                <dd class="my-1">
+                    <div class="weixin-qrcode ml-n1" title="微信公众号"></div>
+                </dd>
+            </dl>
+        </div>
+        <hr class="mt-2 mb-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-secondary">
+                    <p class="mb-1">Copyright © 2011-2020 SegmentFault. 当前呈现版本 19.02.27</p>
+                    <p class="mb-0">
+                        <a class="text-secondary mr-2" target="_blank" href="http://beian.miit.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a>
+                        <a class="text-secondary mr-2" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+                        杭州堆栈科技有限公司版权所有
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-right">
+                <div class="shareContent ">
+                <a class="share_weixin" data-share="weixin" href="javascript:;" data-original-title="" title=""><svg class="svg-inline--fa fa-weixin fa-w-18 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weixin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M385.2 167.6c6.4 0 12.6.3 18.8 1.1C387.4 90.3 303.3 32 207.7 32 100.5 32 13 104.8 13 197.4c0 53.4 29.3 97.5 77.9 131.6l-19.3 58.6 68-34.1c24.4 4.8 43.8 9.7 68.2 9.7 6.2 0 12.1-.3 18.3-.8-4-12.9-6.2-26.6-6.2-40.8-.1-84.9 72.9-154 165.3-154zm-104.5-52.9c14.5 0 24.2 9.7 24.2 24.4 0 14.5-9.7 24.2-24.2 24.2-14.8 0-29.3-9.7-29.3-24.2.1-14.7 14.6-24.4 29.3-24.4zm-136.4 48.6c-14.5 0-29.3-9.7-29.3-24.2 0-14.8 14.8-24.4 29.3-24.4 14.8 0 24.4 9.7 24.4 24.4 0 14.6-9.6 24.2-24.4 24.2zM563 319.4c0-77.9-77.9-141.3-165.4-141.3-92.7 0-165.4 63.4-165.4 141.3S305 460.7 397.6 460.7c19.3 0 38.9-5.1 58.6-9.9l53.4 29.3-14.8-48.6C534 402.1 563 363.2 563 319.4zm-219.1-24.5c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.8 0 24.4 9.7 24.4 19.3 0 10-9.7 19.6-24.4 19.6zm107.1 0c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.5 0 24.4 9.7 24.4 19.3.1 10-9.9 19.6-24.4 19.6z"></path></svg><!-- <i class="fab fa-weixin fa-fw"></i> --> </a><a class="share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> </a><a class="share_github" data-share="github" href="https://github.com/SegmentFault" target="_blank"><svg class="svg-inline--fa fa-github fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github fa-fw"></i> --> </a><a class="share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> </a></div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    window.serverTime = 1588922680000;
+</script>
+
+<script>
+(function (w) {
+    w.SF = {
+        staticUrl: "https://assets.segmentfault.com/v-5eaa9db5/"
+    };
+    w.SF.token = (function () {
+    var _e7GPAzN = '843'//'Mg'
++'d'//'X'
++'d1'//'gOz'
++//'6'
+'6'+//'Vg'
+'2'+//'TkG'
+'d'+//'7'
+'aef'+//'MJ6'
+'ef8'+'a'//'re'
++//'8E'
+'e'+//'GG'
+'97'+'w'//'w'
++//'4'
+'4'+//'xg'
+'530'+//'qiB'
+'fd'+'kV'//'kV'
++''///*'Az6'*/'Az6'
++//'6HM'
+'2b'+//'yUz'
+'73'+''///*'rg'*/'rg'
++//'Sf'
+'81'+//'k'
+'442', _gr8 = [[6,7],[18,19],[18,19],[23,25]];
+
+    for (var i = 0; i < _gr8.length; i ++) {
+        _e7GPAzN = _e7GPAzN.substring(0, _gr8[i][0]) + _e7GPAzN.substring(_gr8[i][1]);
+    }
+
+    return _e7GPAzN;
+})();;
+
+    })(window);
+
+var lock = {
+    type: "",
+    text: '',
+    table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+};
+
+    var ddosMode = false;
+
+(function (currentUrl) {
+if (typeof URL != 'undefined') {
+    var baseUrl = new URL('https://segmentfault.com');
+
+    if (baseUrl.protocol != currentUrl.protocol || baseUrl.host != currentUrl.host) {
+            window.location.href = baseUrl.protocol + '//' + baseUrl.host
+                + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+        }
+    }
+})(window.location);
+</script>
+
+<script src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/jquery.js"></script>
+<script src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/vendors.js"></script>
+<script src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/detail.js"></script>
+
+<script>
+    if (!!navigator.userAgent.match(/MicroMessenger/i)) {
+        $.getScript(`https://res.wx.qq.com/open/js/jweixin-1.2.0.js`,function(){
+            var share = {"title":"\u9ad8\u6027\u80fdJSON\u6846\u67b6\u4e4bFastJson\u7684\u7b80\u5355\u4f7f\u7528","desc":"JSON\u534f\u8bae\u4f7f\u7528\u65b9\u4fbf\uff0c\u8d8a\u6765\u8d8a\u6d41\u884c,JSON\u7684\u5904\u7406\u5668\u6709\u5f88\u591a,\u8fd9\u91cc\u6211\u4ecb\u7ecd\u4e00\u4e0bFastJson,FastJson\u662f\u963f\u91cc\u7684\u5f00\u6e90\u6846\u67b6,\u88ab\u4e0d\u5c11\u4f01\u4e1a\u4f7f\u7528,\u662f\u4e00\u4e2a\u6781\u5176\u4f18\u79c0\u7684Json\u6846\u67b6,Github\u5730\u5740: FastJson","link":"https:\/\/segmentfault.com\/a\/1190000011212806","imgUrl":"https:\/\/avatar-static.segmentfault.com\/326\/680\/3266807223-59bcc83088432_huge256"};
+            share.title += ' - SegmentFault 思否';
+            share.imgUrl = "https://assets.segmentfault.com/v-5eaa9db5/global/img/static/touch-icon.png";
+            $.getJSON('/api/util/weixin/jsapi', function (o) {
+                methods = o.data.jsApiList.slice();
+
+                wx.config(o.data);
+                wx.error(console.error);
+                wx.ready(function () {
+                    methods.forEach(function (method) {
+                    wx[method](share);
+                    });
+                });
+            });
+        })
+    }
+</script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-918487-8');
+    </script>
+
+
+
+
+<iframe id="p_analyse_iframe" src="%E9%AB%98%E6%80%A7%E8%83%BDJSON%E6%A1%86%E6%9E%B6%E4%B9%8BFastJson%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%20-%20Java%20-%20SegmentFault%20%E6%80%9D%E5%90%A6_files/a.html" style="display: none;"></iframe>
+    <div class="is-active ImageView p-4" style="display: none;">
+        <div class="ImageView-inner" style="overflow: auto;">
+            <img src="" class="ImageView-img" alt="preview" style="max-width: 100%">
+        </div>
+    </div><div id="fixedTools" class="position-fixed d-none" style="right: 24px; bottom: 24px">
+            <button type="button" class="btn btn-light" title="回顶部">▲</button>
+        </div><div id="atwho-container"><div id="atwho-ground-cff829b31588922683236"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div></body></html>
